@@ -1,6 +1,6 @@
 # Notification system #
 
-![alt text for screen readers](NotificationSystemArchitecture.drawio.png).
+![alt text for screen readers](NotificationSystemArchitecture.drawio.png)
 
 The notification system consists of three main components:
 
