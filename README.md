@@ -44,18 +44,16 @@ To ensure scalability and availability, the notification database should use are
 
 ## Notification Processor ##
 
-The notification processor is a critical component of the notification system responsible for consuming events from the event queue, processing them, and determining which notifications need to be sent. It performs several key tasks:
+The notification processor is a critical component of the notification system, responsible for processing events and determining which notifications to send users. It performs several key tasks, including:
 
-- Event Consumption: The notification processor continuously monitors the event queue for new events. Once an event is detected, it is retrieved and stored in a temporary buffer for processing.
-- Event Validation: Before proceeding with notification generation, the notification processor validates the retrieved event to ensure its integrity and authenticity. This may involve checking event signatures, timestamps, and other relevant data to prevent processing invalid or erroneous events.
-- User Preference Check: For each valid event, the notification processor checks the user's notification preferences to determine if a notification should be generated. This involves retrieving the user's notification settings from a database or other storage mechanism and evaluating them against the event type and context.
-- Duplicate Notification Filtering: To avoid sending unnecessary or redundant notifications, the notification processor implements duplicate notification filtering (Redis queue). It checks whether a notification has already been sent for the same event or context and skips generating a duplicate if so.
-- Notification Content Generation: If a notification is deemed necessary, the notification processor generates its content. This may involve extracting relevant information from the event, applying user-specific formatting, and tailoring the message to the appropriate notification channel.
-- Notification Prioritization: Based on the event type, user preferences, and other factors, the notification processor assigns a priority level to the notification. This priority level may determine the order in which notifications are sent or the prominence they receive in the user's notification feed.
-- Notification Routing: Once a notification is generated and prioritized, the notification processor routes it to the appropriate notification delivery channel. This may involve sending the notification to a specific notification adapter or directly to a third-party notification service.
-- Notification Delivery Tracking: The notification processor maintains a record of sent notifications, including their delivery status and any associated errors or delivery failures. This information may be used for troubleshooting, reporting, and improving notification delivery performance.
-- Performance Optimization: The notification processor is designed to handle high volumes of events and notifications efficiently. It employs various techniques, such as caching, batch processing, and asynchronous operations, to minimize latency and maximize throughput.
-- Error Handling and Recovery: The notification processor is designed to be robust and handle unexpected errors or interruptions. It incorporates error handling mechanisms to retry failed operations, log errors for debugging, and alert administrators in case of critical issues.
+- Consuming and validating events
+- Checking user preferences and filtering duplicates
+- Generating and prioritizing notifications
+- Routing notifications to the appropriate channel
+- Tracking delivery status and optimizing performance
+- Handling errors and interruptions gracefully
+
+The notification processor is designed to be robust, scalable, and efficient, ensuring that users receive timely, relevant, and personalized notifications.
 
 ### 👉 Notification Vendors ###
 - IOS notification delivery is handled by APNs. You trigger their API with the required payload and they deliver the notification to the user.
